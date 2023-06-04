@@ -75,6 +75,18 @@ class FirebaseUserListener {
         }
     }
     
+    func logOutCurrentUser(completion: @escaping (_ error: Error?) -> Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            userDefaults.removeObject(forKey: kCURRENTUSER)
+            
+            completion(nil)
+        } catch let error as NSError {
+            completion(error)
+        }
+    }
+    
 // MARK: - Save users
     
     func saveUserToFirestore(_ user: User) {

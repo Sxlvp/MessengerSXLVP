@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     
     var isLogin = true
     
-// MARK: - View LifeCycle
+// MARK: - ViewLifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -19,6 +19,13 @@
 		FC34B4D92A220F4300694974 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4D82A220F4300694974 /* Constants.swift */; };
 		FC34B4DB2A2217B600694974 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4DA2A2217B600694974 /* FCollectionReference.swift */; };
 		FC34B4DE2A22280500694974 /* FirebaseUseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4DD2A22280500694974 /* FirebaseUseListener.swift */; };
+		FC34B4E32A26AF5500694974 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4E22A26AF5500694974 /* SettingsTableViewController.swift */; };
+		FC34B4E52A2BAB8000694974 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4E42A2BAB8000694974 /* EditProfileTableViewController.swift */; };
+		FC34B4E72A2CBC2500694974 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4E62A2CBC2500694974 /* FileStorage.swift */; };
+		FC34B4E92A2CC8CF00694974 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4E82A2CC8CF00694974 /* GlobalFunctions.swift */; };
+		FC34B4EB2A2CDA8100694974 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4EA2A2CDA8100694974 /* StatusTableViewController.swift */; };
+		FC34B4ED2A2CEB5B00694974 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4EC2A2CEB5B00694974 /* Extensions.swift */; };
+		FC34B4EF2A2CF7C900694974 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC34B4EE2A2CF7C900694974 /* Status.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +44,13 @@
 		FC34B4D82A220F4300694974 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FC34B4DA2A2217B600694974 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		FC34B4DD2A22280500694974 /* FirebaseUseListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUseListener.swift; sourceTree = "<group>"; };
+		FC34B4E22A26AF5500694974 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		FC34B4E42A2BAB8000694974 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		FC34B4E62A2CBC2500694974 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		FC34B4E82A2CC8CF00694974 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		FC34B4EA2A2CDA8100694974 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
+		FC34B4EC2A2CEB5B00694974 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FC34B4EE2A2CF7C900694974 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		FF9A8257BF13900BBCAB022A /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +107,9 @@
 				FC34B4BF2A20C17C00694974 /* AppDelegate.swift */,
 				FC34B4C12A20C17C00694974 /* SceneDelegate.swift */,
 				FC34B4C32A20C17C00694974 /* LoginViewController.swift */,
+				FC34B4E22A26AF5500694974 /* SettingsTableViewController.swift */,
+				FC34B4E42A2BAB8000694974 /* EditProfileTableViewController.swift */,
+				FC34B4EA2A2CDA8100694974 /* StatusTableViewController.swift */,
 				FC34B4DF2A2562E000694974 /* Helpers */,
 				FC34B4DC2A2227B200694974 /* FirebaseHelpers */,
 				FC34B4D72A21FF2300694974 /* Model */,
@@ -109,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				FC34B4D52A21FF1D00694974 /* User.swift */,
+				FC34B4EE2A2CF7C900694974 /* Status.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +136,7 @@
 			children = (
 				FC34B4DA2A2217B600694974 /* FCollectionReference.swift */,
 				FC34B4DD2A22280500694974 /* FirebaseUseListener.swift */,
+				FC34B4E62A2CBC2500694974 /* FileStorage.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -126,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				FC34B4D82A220F4300694974 /* Constants.swift */,
+				FC34B4E82A2CC8CF00694974 /* GlobalFunctions.swift */,
+				FC34B4EC2A2CEB5B00694974 /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -246,11 +267,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC34B4E92A2CC8CF00694974 /* GlobalFunctions.swift in Sources */,
 				FC34B4DB2A2217B600694974 /* FCollectionReference.swift in Sources */,
+				FC34B4E72A2CBC2500694974 /* FileStorage.swift in Sources */,
 				FC34B4D92A220F4300694974 /* Constants.swift in Sources */,
 				FC34B4D62A21FF1D00694974 /* User.swift in Sources */,
 				FC34B4C42A20C17C00694974 /* LoginViewController.swift in Sources */,
+				FC34B4E32A26AF5500694974 /* SettingsTableViewController.swift in Sources */,
+				FC34B4E52A2BAB8000694974 /* EditProfileTableViewController.swift in Sources */,
+				FC34B4ED2A2CEB5B00694974 /* Extensions.swift in Sources */,
+				FC34B4EF2A2CF7C900694974 /* Status.swift in Sources */,
 				FC34B4C02A20C17C00694974 /* AppDelegate.swift in Sources */,
+				FC34B4EB2A2CDA8100694974 /* StatusTableViewController.swift in Sources */,
 				FC34B4DE2A22280500694974 /* FirebaseUseListener.swift in Sources */,
 				FC34B4C22A20C17C00694974 /* SceneDelegate.swift in Sources */,
 			);
