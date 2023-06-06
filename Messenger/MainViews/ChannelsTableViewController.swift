@@ -1,10 +1,3 @@
-//
-//  ChannelsTableViewController.swift
-//  Messenger
-//
-//  Created by Гах Дмитро on 06.06.2023.
-//
-
 import UIKit
 
 class ChannelsTableViewController: UITableViewController {
@@ -19,16 +12,16 @@ class ChannelsTableViewController: UITableViewController {
     var subscribedChannels: [Channel] = []
 
     
-//MARK: - View LifeCycle
+//MARK: - ViewLifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.largeTitleDisplayMode = .always
-        self.title = "Channel"
+        title = "Channel"
 
-        self.refreshControl = UIRefreshControl()
-        self.tableView.refreshControl = self.refreshControl
+        refreshControl = UIRefreshControl()
+        tableView.refreshControl = self.refreshControl
         
         tableView.tableFooterView = UIView()
         
@@ -40,7 +33,7 @@ class ChannelsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return channelSegmentOutlet.selectedSegmentIndex == 0 ? subscribedChannels.count : allChannels.count
+        channelSegmentOutlet.selectedSegmentIndex == 0 ? subscribedChannels.count : allChannels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +87,6 @@ class ChannelsTableViewController: UITableViewController {
         }
     }
 
-
 // MARK: - IBActions
     
     @IBAction func channelSegmentValueChanged(_ sender: Any) {
@@ -129,7 +121,8 @@ class ChannelsTableViewController: UITableViewController {
         }
     }
     
-    //MARK: - UIScrollViewDelegate
+//MARK: - UIScrollViewDelegate
+    
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         if self.refreshControl!.isRefreshing {
@@ -137,8 +130,9 @@ class ChannelsTableViewController: UITableViewController {
             self.refreshControl!.endRefreshing()
         }
     }
-
-    //MARK: - Navigation
+    
+//MARK: - Navigation
+    
     private func showChannelView(channel: Channel) {
         
         let channelVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "channelView") as! ChannelDetailTableViewController
@@ -157,10 +151,9 @@ class ChannelsTableViewController: UITableViewController {
     }
 }
 
-
 extension ChannelsTableViewController : ChannelDetailTableViewControllerDelegate {
     
     func didClickFollow() {
-        self.downloadAllChannels()
+        downloadAllChannels()
     }
 }

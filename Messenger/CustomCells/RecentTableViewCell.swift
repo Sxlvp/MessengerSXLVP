@@ -46,7 +46,6 @@ class RecentTableViewCell: UITableViewCell {
         dateLabel.adjustsFontSizeToFitWidth = true
     }
     
-    
     private func setAvatar(avatarLink: String) {
         if avatarLink != "" {
             FileStorage.downloadImage(imageUrl: avatarLink) { (avatar) in

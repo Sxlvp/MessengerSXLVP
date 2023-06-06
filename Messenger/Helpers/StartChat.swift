@@ -56,7 +56,6 @@ func createRecentItems(chatRoomId: String, users: [User]) {
             
             FirebaseRecentListener.shared.saveRecent(recentObject)
         }
-        
     }
 }
 

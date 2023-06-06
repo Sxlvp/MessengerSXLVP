@@ -57,7 +57,7 @@ class SettingsTableViewController: UITableViewController {
         print("Terms and conditions")
     }
     
-    @IBAction func logOut(_ sender: UIButton) {
+    @IBAction func logOutButtonPressed(_ sender: UIButton) {
         
         FirebaseUserListener.shared.logOutCurrentUser { error in
             

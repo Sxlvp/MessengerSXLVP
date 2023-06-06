@@ -13,6 +13,7 @@ extension ChatViewController: MessagesLayoutDelegate {
                 
                 return 40
             }
+            
             return 18
         }
         
@@ -23,8 +24,8 @@ extension ChatViewController: MessagesLayoutDelegate {
         return isFromCurrentSender(message: message) ? 17 : 0
     }
     
+//MARK: - Message Bottom Label
     
-    //MARK: - Message Bottom Label
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         
         return indexPath.section != mkMessages.count - 1 ? 10 : 0
@@ -34,7 +35,6 @@ extension ChatViewController: MessagesLayoutDelegate {
         
         avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
     }
-
 }
 
 extension ChannelChatViewController: MessagesLayoutDelegate {
@@ -49,16 +49,12 @@ extension ChannelChatViewController: MessagesLayoutDelegate {
                 
                 return 40
             }
+            
             return 18
         }
         
         return 0
     }
-
-//    func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-//        return isFromCurrentSender(message: message) ? 17 : 0
-//    }
-    
     
 //MARK: - Message Bottom Label
     

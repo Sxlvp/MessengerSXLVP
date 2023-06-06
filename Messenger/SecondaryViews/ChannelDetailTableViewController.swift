@@ -59,13 +59,12 @@ class ChannelDetailTableViewController: UITableViewController {
         }
     }
     
-    //MARK: - Actions
+//MARK: - Actions
+    
     @objc func followChannel() {
         channel.memberIds.append(User.currentId)
         FirebaseChannelListener.shared.saveCannel(channel)
         delegate?.didClickFollow()
         self.navigationController?.popViewController(animated: true)
     }
-
-
 }

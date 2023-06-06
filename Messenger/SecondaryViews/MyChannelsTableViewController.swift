@@ -2,10 +2,12 @@ import UIKit
 
 class MyChannelsTableViewController: UITableViewController {
 
-    //MARK: - Vars
+//MARK: - Vars
+    
     var myChannels: [Channel] = []
 
-    //MARK: - View LifeCycle
+//MARK: - View LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -13,7 +15,8 @@ class MyChannelsTableViewController: UITableViewController {
         downloadUserChannels()
     }
     
-    //MARK: - Download Channels
+//MARK: - Download Channels
+    
     private func downloadUserChannels() {
         
         FirebaseChannelListener.shared.downloadUserChannelsFromFirebase { (allChannels) in
@@ -32,10 +35,11 @@ class MyChannelsTableViewController: UITableViewController {
         performSegue(withIdentifier: "myChannelToAddSeg", sender: self)
     }
     
-    // MARK: - Table view data source
+// MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return myChannels.count
+        myChannels.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,7 +51,7 @@ class MyChannelsTableViewController: UITableViewController {
         return cell
     }
 
-    //MARK: - TableView Delegates
+//MARK: - TableView Delegates
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -58,7 +62,7 @@ class MyChannelsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        return true
+        true
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

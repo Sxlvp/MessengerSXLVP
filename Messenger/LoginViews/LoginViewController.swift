@@ -132,17 +132,6 @@ class LoginViewController: UIViewController {
     
 // MARK: - Helpers
     
-    private func isDataInputedFor(type: String) -> Bool {
-        switch type {
-        case "login":
-            return emailTextField.text != "" && passwordTextField.text != ""
-        case "register":
-            return emailTextField.text != "" && passwordTextField.text != "" && repeatPasswordTextField.text != ""
-        default:
-            return emailTextField.text != ""
-        }
-    }
-    
     private func registerUser() {
         if passwordTextField.text == repeatPasswordTextField.text {
             
@@ -198,6 +187,18 @@ class LoginViewController: UIViewController {
             } else {
                 ProgressHUD.showFailed(error!.localizedDescription)
             }
+        }
+    }
+    
+    private func isDataInputedFor(type: String) -> Bool {
+        
+        switch type {
+        case "login":
+            return emailTextField.text != "" && passwordTextField.text != ""
+        case "registration":
+            return emailTextField.text != "" && passwordTextField.text != "" && repeatPasswordTextField.text != ""
+        default:
+            return emailTextField.text != ""
         }
     }
     

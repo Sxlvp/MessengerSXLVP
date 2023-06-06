@@ -16,7 +16,7 @@ extension ChatViewController: MessagesDataSource {
         mkMessages.count
     }
     
-    //MARK: - Cell top Labels
+//MARK: - Cell top Labels
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         
@@ -75,7 +75,7 @@ extension ChannelChatViewController: MessagesDataSource {
         mkMessages.count
     }
     
-    //MARK: - Cell top Labels
+//MARK: - Cell top Labels
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         
@@ -91,9 +91,9 @@ extension ChannelChatViewController: MessagesDataSource {
         
         return nil
     }
-
     
-    //Message bottom Label
+//Message bottom Label
+    
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         
         return NSAttributedString(string: message.sentDate.time(), attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor: UIColor.darkGray])

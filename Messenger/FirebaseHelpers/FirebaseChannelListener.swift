@@ -9,7 +9,8 @@ class FirebaseChannelListener {
     
     private init() { }
     
-    //MARK: - Fetching
+//MARK: - Fetching
+    
     func downloadUserChannelsFromFirebase(completion: @escaping (_ allChannels: [Channel]) ->Void) {
         
         channelListener = FirebaseReference(.Channel).whereField(kADMINID, isEqualTo: User.currentId).addSnapshotListener({ (querySnapshot, error) in
@@ -30,11 +31,9 @@ class FirebaseChannelListener {
         })
     }
     
-    
     func downloadSubscribedChannels(completion: @escaping (_ allChannels: [Channel]) ->Void) {
         
         channelListener = FirebaseReference(.Channel).whereField(kMEMBERIDS, arrayContains: User.currentId).addSnapshotListener({ (querySnapshot, error) in
-            
             
             guard let documents = querySnapshot?.documents else {
                 print("no documents for subscribed channels")
@@ -69,11 +68,9 @@ class FirebaseChannelListener {
             completion(allChannels)
         }
     }
-
     
-
+//MARK: - Add Update Delete
     
-    //MARK: - Add Update Delete
     func saveCannel(_ channel: Channel) {
         
         do {
@@ -88,7 +85,7 @@ class FirebaseChannelListener {
         FirebaseReference(.Channel).document(channel.id).delete()
     }
 
-    //MARK: - Helpers
+//MARK: - Helpers
     
     func removeSubscribedChannels(_ allChannels: [Channel]) -> [Channel] {
         
@@ -103,7 +100,6 @@ class FirebaseChannelListener {
         return newChannels
     }
 
-    
     func removeChannelListener() {
         self.channelListener.remove()
     }

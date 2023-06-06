@@ -18,8 +18,6 @@ extension ChatViewController: MessagesDisplayDelegate {
         let tail: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
         return .bubbleTail(tail, .curved)
     }
-    
-    
 }
 
 extension ChannelChatViewController: MessagesDisplayDelegate {
@@ -39,6 +37,4 @@ extension ChannelChatViewController: MessagesDisplayDelegate {
         let tail: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
         return .bubbleTail(tail, .curved)
     }
-    
-    
 }

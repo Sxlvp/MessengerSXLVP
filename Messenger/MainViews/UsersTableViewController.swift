@@ -109,9 +109,9 @@ class UsersTableViewController: UITableViewController {
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 
-        if self.refreshControl!.isRefreshing {
-            self.downloadUsers()
-            self.refreshControl!.endRefreshing()
+        if refreshControl!.isRefreshing {
+            downloadUsers()
+            refreshControl!.endRefreshing()
         }
     }
     
@@ -123,7 +123,7 @@ class UsersTableViewController: UITableViewController {
         let profileView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileView") as! ProfileTableViewController
         
         profileView.user = user
-        self.navigationController?.pushViewController(profileView, animated: true)
+        navigationController?.pushViewController(profileView, animated: true)
     }
    
 }

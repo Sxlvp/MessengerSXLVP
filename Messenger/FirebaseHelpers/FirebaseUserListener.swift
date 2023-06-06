@@ -187,5 +187,4 @@ class FirebaseUserListener {
             print(error.localizedDescription, "updating user...")
         }
     }
-
 }

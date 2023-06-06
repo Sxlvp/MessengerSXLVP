@@ -6,7 +6,8 @@ let storage = Storage.storage()
 
 class FileStorage {
     
-    //MARK: - Images
+//MARK: - Images
+    
     class func uploadImage(_ image: UIImage, directory: String, completion: @escaping (_ documentLink: String?) -> Void) {
         
         let storageRef = storage.reference(forURL: kFILEREFERENCE).child(directory)
@@ -36,14 +37,12 @@ class FileStorage {
             }
         })
         
-        
         task.observe(StorageTaskStatus.progress) { (snapshot) in
             
             let progress = snapshot.progress!.completedUnitCount / snapshot.progress!.totalUnitCount
             ProgressHUD.showProgress(CGFloat(progress))
         }
     }
-    
     
     class func downloadImage(imageUrl: String, completion: @escaping (_ image: UIImage?) -> Void) {
         
@@ -95,7 +94,8 @@ class FileStorage {
         }
     }
     
-    //MARK: - Video
+//MARK: - Video
+    
     class func uploadVideo(_ video: NSData, directory: String, completion: @escaping (_ videoLink: String?) -> Void) {
         
         let storageRef = storage.reference(forURL: kFILEREFERENCE).child(directory)
@@ -199,7 +199,6 @@ class FileStorage {
                     }
                 })
                 
-                
                 task.observe(StorageTaskStatus.progress) { (snapshot) in
                     
                     let progress = snapshot.progress!.completedUnitCount / snapshot.progress!.totalUnitCount
@@ -242,9 +241,9 @@ class FileStorage {
             }
         }
     }
-
     
-    //MARK: - Save Locally
+//MARK: - Save Locally
+    
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docUrl = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
         fileData.write(to: docUrl, atomically: true)
@@ -253,9 +252,8 @@ class FileStorage {
     
 }
 
-
-
 //Helpers
+
 func fileInDocumentsDirectory(fileName: String) -> String {
     return getDocumentsURL().appendingPathComponent(fileName).path
 }

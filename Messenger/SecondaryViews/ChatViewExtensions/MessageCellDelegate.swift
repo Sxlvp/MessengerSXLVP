@@ -120,7 +120,6 @@ extension ChannelChatViewController: MessageCellDelegate {
                     moviePlayer.player!.play()
                 }
             }
-
         }
     }
     

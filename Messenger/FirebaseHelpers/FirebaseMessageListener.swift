@@ -95,7 +95,7 @@ class FirebaseMessageListener {
         }
     }
     
-    //MARK: - Add, Update, Delete
+//MARK: - Add, Update, Delete
     
     func addMessage(_ message: LocalMessage, memberId: String) {
         
@@ -116,9 +116,9 @@ class FirebaseMessageListener {
             print("error saving message ", error.localizedDescription)
         }
     }
-
-
-    //MARK: - UpdateMessageStatus
+    
+//MARK: - UpdateMessageStatus
+    
     func updateMessageInFireStore(_ message: LocalMessage, memberIds: [String]) {
 
         let values = [kSTATUS : kREAD, kREADDATE : Date()] as [String : Any]
@@ -128,7 +128,6 @@ class FirebaseMessageListener {
         }
     }
 
-    
     func removeListeners() {
         self.newChatListener.remove()
         

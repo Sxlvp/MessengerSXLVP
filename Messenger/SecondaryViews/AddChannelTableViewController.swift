@@ -10,7 +10,8 @@ class AddChannelTableViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var aboutTextView: UITextView!
     
-    //MARK: - Vars
+//MARK: - Vars
+    
     var gallery: GalleryController!
     var tapGesture = UITapGestureRecognizer()
     var avatarLink = ""
@@ -18,7 +19,8 @@ class AddChannelTableViewController: UITableViewController {
     
     var channelToEdit: Channel?
     
-    //MARK: - View Lifecycle
+//MARK: - ViewLifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,7 +54,8 @@ class AddChannelTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - Configuration
+//MARK: - Configuration
+    
     private func configureGestures() {
         tapGesture.addTarget(self, action: #selector(avatarImageTap))
         avatarImageView.isUserInteractionEnabled = true
@@ -123,7 +126,6 @@ class AddChannelTableViewController: UITableViewController {
         }
     }
 
-
     private func setAvatar(avatarLink: String) {
         
         if avatarLink != "" {
@@ -170,5 +172,4 @@ extension AddChannelTableViewController: GalleryControllerDelegate {
     func galleryControllerDidCancel(_ controller: GalleryController) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
 }

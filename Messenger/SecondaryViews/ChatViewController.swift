@@ -121,7 +121,7 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
         
-        scrollsToBottomOnKeyboardBeginsEditing = true
+        scrollsToLastItemOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         
         messagesCollectionView.refreshControl = refreshController
@@ -191,9 +191,8 @@ class ChatViewController: MessagesViewController {
         titleLabel.text = recipientName
     }
     
+//MARK: - Load Chats
     
-    
-    //MARK: - Load Chats
     private func loadChats() {
                 
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
@@ -235,8 +234,9 @@ class ChatViewController: MessagesViewController {
     private func checkForOldChats() {
         FirebaseMessageListener.shared.checkForOldChats(User.currentId, collectionId: chatId)
     }
+
+//MARK: - Insert Messages
     
-    //MARK: - Insert Messages
     private func listenForReadStatusChange() {
         
         FirebaseMessageListener.shared.listenForReadStatusChange(User.currentId, collectionId: chatId) { (updatedMessage) in
@@ -296,6 +296,7 @@ class ChatViewController: MessagesViewController {
     }
 
     //MARK: - UpdateReadMessagesStatus
+    
     func updateMessage(_ localMessage: LocalMessage) {
 
         for index in 0 ..< mkMessages.count {
@@ -393,7 +394,8 @@ class ChatViewController: MessagesViewController {
         }
     }
 
-    //MARK: - Helpers
+//MARK: - Helpers
+    
     private func removeListeners() {
         FirebaseTypingListener.shared.removeTypingListener()
         FirebaseMessageListener.shared.removeListeners()
@@ -404,10 +406,9 @@ class ChatViewController: MessagesViewController {
         let lastMessageDate = allLocalMessages.last?.date ?? Date()
         return Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
     }
-
-
     
     //MARK: - Update Typing indicator
+    
     func createTypingObserver() {
         
         FirebaseTypingListener.shared.createTypingObserver(chatRoomId: chatId) { (isTyping) in
@@ -492,7 +493,6 @@ class ChatViewController: MessagesViewController {
     }
 }
 
-
 extension ChatViewController : GalleryControllerDelegate {
     
     func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
@@ -521,8 +521,5 @@ extension ChatViewController : GalleryControllerDelegate {
     func galleryControllerDidCancel(_ controller: GalleryController) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
 }
 

@@ -6,7 +6,8 @@ import RealmSwift
 
 class ChannelChatViewController: MessagesViewController {
 
-    //MARK: - Vars
+//MARK: - Vars
+    
     private var chatId = ""
     private var recipientId = ""
     private var recipientName = ""
@@ -31,14 +32,16 @@ class ChannelChatViewController: MessagesViewController {
     
     let micButton = InputBarButtonItem()
 
-    //Listeners
+//Listeners
+    
     var notificationToken: NotificationToken?
     
     var longPressGesture: UILongPressGestureRecognizer!
     var audioFileName = ""
     var audioDuration: Date!
     
-    //MARK: - Inits
+//MARK: - Inits
+    
     init(channel: Channel) {
         
         super.init(nibName: nil, bundle: nil)
@@ -53,7 +56,8 @@ class ChannelChatViewController: MessagesViewController {
         super.init(coder: coder)
     }
     
-    //MARK: - View LifeCycle
+//MARK: - View LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -84,7 +88,8 @@ class ChannelChatViewController: MessagesViewController {
         audioController.stopAnyOngoingPlaying()
     }
     
-    //MARK: - Configurations
+//MARK: - Configurations
+    
     private func configureMessageCollectionView() {
         
         messagesCollectionView.messagesDataSource = self
@@ -158,9 +163,8 @@ class ChannelChatViewController: MessagesViewController {
         self.title = channel.name
     }
     
+//MARK: - Load Chats
     
-    
-    //MARK: - Load Chats
     private func loadChats() {
                 
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
@@ -203,7 +207,7 @@ class ChannelChatViewController: MessagesViewController {
         FirebaseMessageListener.shared.checkForOldChats(chatId, collectionId: chatId)
     }
     
-    //MARK: - Insert Messages
+//MARK: - Insert Messages
     
     private func insertMessages() {
 
@@ -249,9 +253,7 @@ class ChannelChatViewController: MessagesViewController {
         displayingMessagesCount += 1
     }
 
-
-
-    //MARK: - Actions
+//MARK: - Actions
     
     @objc func backButtonPressed() {
         FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
@@ -263,7 +265,6 @@ class ChannelChatViewController: MessagesViewController {
         
         OutgoingMessage.sendChannel(channel: channel, text: text, photo: photo, video: video, audio: audio, audioDuration: audioDuration, location: location)
     }
-
     
     private func actionAttachMessage() {
         
@@ -296,7 +297,6 @@ class ChannelChatViewController: MessagesViewController {
         shareMedia.setValue(UIImage(systemName: "photo.fill"), forKey: "image")
         shareLocation.setValue(UIImage(systemName: "mappin.and.ellipse"), forKey: "image")
 
-        
         optionMenu.addAction(takePhotoOrVideo)
         optionMenu.addAction(shareMedia)
         optionMenu.addAction(shareLocation)
@@ -305,7 +305,8 @@ class ChannelChatViewController: MessagesViewController {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    //MARK: - UIScrollViewDelegate
+//MARK: - UIScrollViewDelegate
+    
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         if refreshController.isRefreshing {
@@ -319,7 +320,8 @@ class ChannelChatViewController: MessagesViewController {
         }
     }
 
-    //MARK: - Helpers
+//MARK: - Helpers
+    
     private func removeListeners() {
         FirebaseMessageListener.shared.removeListeners()
     }
@@ -330,9 +332,8 @@ class ChannelChatViewController: MessagesViewController {
         return Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate
     }
 
-
-
-    //MARK: - Gallery
+//MARK: - Gallery
+    
     private func showImageGallery(camera: Bool) {
         
         gallery = GalleryController()
@@ -346,7 +347,8 @@ class ChannelChatViewController: MessagesViewController {
         self.present(gallery, animated: true, completion: nil)
     }
     
-    //MARK: - AudioMessages
+//MARK: - AudioMessages
+    
     @objc func recordAudio() {
         
         switch longPressGesture.state {
@@ -374,12 +376,8 @@ class ChannelChatViewController: MessagesViewController {
         @unknown default:
             print("unknown")
         }
-
     }
-
-
 }
-
 
 extension ChannelChatViewController : GalleryControllerDelegate {
     
