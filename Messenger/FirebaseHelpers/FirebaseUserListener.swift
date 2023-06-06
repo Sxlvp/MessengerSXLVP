@@ -100,6 +100,7 @@ class FirebaseUserListener {
 // MARK: - Download user from Firebase
     
     func downloadUserFromFirebase(userId: String, email: String? = nil) {
+        
         FirebaseReference(.User).document(userId).getDocument { querySnapshot, error in
             
             guard let document = querySnapshot else {
@@ -115,10 +116,76 @@ class FirebaseUserListener {
             case .success(let userObject):
                 if let user = userObject {
                     saveUserLocally(user)
+                } else {
+                    print("Documnet does not exist")
                 }
             case .failure(let error):
-                print("no document", error)
+                print("Error decoding user ", error)
             }
         }
     }
+    
+    func downloadAllUsersFromFirebase(completion: @escaping (_ allUsers: [User]) -> Void ) {
+        
+        var users: [User] = []
+        
+        FirebaseReference(.User).limit(to: 500).getDocuments { (querySnapshot, error) in
+            
+            guard let document = querySnapshot?.documents else {
+                print("no documents in all users")
+                return
+            }
+            
+            let allUsers = document.compactMap { (queryDocumentSnapshot) -> User? in
+                return try? queryDocumentSnapshot.data(as: User.self)
+            }
+            
+            for user in allUsers {
+                
+                if User.currentId != user.id {
+                    users.append(user)
+                }
+            }
+            completion(users)
+        }
+    }
+    
+    func downloadUsersFromFirebase(withIds: [String], completion: @escaping (_ allUsers: [User]) -> Void) {
+        
+        var count = 0
+        var usersArray: [User] = []
+        
+        for userId in withIds {
+            
+            FirebaseReference(.User).document(userId).getDocument { (querySnapshot, error) in
+                
+                guard let document = querySnapshot else {
+                    print("no document for user")
+                    return
+                }
+                
+                let user = try? document.data(as: User.self)
+
+                usersArray.append(user!)
+                count += 1
+                
+                
+                if count == withIds.count {
+                    completion(usersArray)
+                }
+            }
+        }
+    }
+    
+    //MARK: - Update
+    
+    func updateUserInFirebase(_ user: User) {
+        
+        do {
+            let _ = try FirebaseReference(.User).document(user.id).setData(from: user)
+        } catch {
+            print(error.localizedDescription, "updating user...")
+        }
+    }
+
 }

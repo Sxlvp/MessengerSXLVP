@@ -1,12 +1,21 @@
 import UIKit
 import FirebaseCore
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var firstRun: Bool?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        
+        firstRunCheck()
+        
+        application.registerForRemoteNotifications()
+        
+        LocationManager.shared.startUpdating()
         
         return true
     }
@@ -24,5 +33,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+
+// MARK: - Remote notifications
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("unable to register for remote notifications ", error.localizedDescription)
+    }
+
+    private func requestPushNotificationPermission() {
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, _) in
+            
+        }
+    }
+    
+    private func updateUserPushId(newPushId: String) {
+        
+        if var user = User.currentUser {
+            user.pushId = newPushId
+            saveUserLocally(user)
+            FirebaseUserListener.shared.updateUserInFirebase(user)
+        }
+    }
+    
+// MARK: - FirstRun
+    
+    private func firstRunCheck() {
+
+        firstRun = userDefaults.bool(forKey: kFIRSTRUN)
+        
+        if !firstRun! {
+
+            let status = Status.allCases.map { $0.rawValue }
+            
+            userDefaults.set(status, forKey: kSTATUS)
+            userDefaults.set(true, forKey: kFIRSTRUN)
+        }
+    }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        completionHandler()
+    }
+}
+
+extension AppDelegate : MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print(".......... user push token is ", fcmToken ?? "")
+        updateUserPushId(newPushId: fcmToken ?? "")
+    }
+    
+}

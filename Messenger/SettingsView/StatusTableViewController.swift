@@ -47,7 +47,7 @@ class StatusTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView()
-        headerView.backgroundColor = UIColor(named: "tableviewBackgroundColor")
+        headerView.backgroundColor = UIColor(named: "tableViewBackgroundColor")
         return headerView
     }
 
