@@ -1,6 +1,6 @@
 # MessengerSXLVP
 
-A Swift Chat application like Telegram, WhatsApp or Viber.
+Swift test chat application like Telegram, WhatsApp or Viber.
 
 App includes:
 
