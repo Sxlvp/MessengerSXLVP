@@ -1,7 +1,6 @@
 import Foundation
 import FirebaseFirestore
 
-
 class FirebaseRecentListener {
     
     static let shared = FirebaseRecentListener()
